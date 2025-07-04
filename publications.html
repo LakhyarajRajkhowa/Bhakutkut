@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="as">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ভাকুটকুট</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <header>
+        <button id="language-toggle">English</button>
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="ভাকুটকুট Logo" class="logo">
+        </div>
+        <div class="tagline">
+            <p data-as="কেৱল হাঁহিবৰ বাবে" data-en="কেৱল হাঁহিবৰ বাবে">কেৱল হাঁহিবৰ বাবে</p>
+            <p data-as="হাঁহি হাঁহি পিঢ়বৰ বাবে" data-en="হাঁহি হাঁহি পিঢ়বৰ বাবে">হাঁহি হাঁহি পিঢ়বৰ বাবে</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html" data-as="ভাকুটকুট" data-en="About">ভাকুটকুট</a>
+        <a href="publications.html" data-as="প্ৰকাশন" data-en="Publications">প্ৰকাশন</a>
+        <a href="gallery.html" data-as="গ্যালাৰী" data-en="Gallery">গ্যালাৰী</a>
+        <a href="contact.html" data-as="যোগাযোগ" data-en="Contact">যোগাযোগ</a>
+    </nav>
+
+    <div class="container">
+        <section class="published-work">
+            <h2 data-as="প্ৰকাশন" data-en="Publications">প্ৰকাশন</h2>
+
+            <div class="sort-controls">
+                <label for="sortOrder">Sort by:</label>
+                <select id="sortOrder">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                </select>
+            </div>
+
+            <div id="books-container"></div>
+        </section>
+    </div>
+
+   <footer>
+    <p data-as="&copy; 2025 ভাকুটকুট প্ৰকাশন গোষ্ঠী | সকলো অধিকাৰ সংৰক্ষিত"
+      data-en="&copy; 2025 Bhakutkut Publication Group | All rights reserved">&copy; 2025 ভাকুটকুট প্ৰকাশন গোষ্ঠী | সকলো অধিকাৰ সংৰক্ষিত</p>
+  </footer>
+
+    <script>
+        const booksData = [
+            {
+                year: 2025,
+                titleAS: "ভাকুটকুট (২০২৫) ",
+                titleEN: "Bhakutkut (2025) ",
+                editionAS: " সংস্কৰণ : পঞ্চম ",
+                editionEN: " Edition : Fifth ",
+                pdf: "assets/books/Bhakutkut_5th_edition_2025.pdf",
+                img: "assets/cover/Bhakutkut_5th_edition_2025.jpg"
+            },
+            
+            {
+                year: 2025,
+                titleAS: "ভাকুটকুট (২০২৫) ",
+                titleEN: "Bhakutkut (2025) ",
+                editionAS: " সংস্কৰণ : ষষ্ঠ ",
+                editionEN: " Edition : Sixth ",
+                pdf: "assets/books/Bhakutkut_6th_edition_2025.pdf",
+                img: "assets/cover/Bhakutkut_6th_edition_2025.jpg"
+            },
+            {
+                year: 2024,
+                titleAS: "ভাকুটকুট (২০২৪)",
+                titleEN: "Bhakutkut (2024)",
+                editionAS: " সংস্কৰণ : চতুৰ্থ ",
+                editionEN: " Edition : Fourth ",
+                pdf: "assets/books/Bhakutkut_4th_edition_2024.pdf",
+                img: "assets/cover/Bhakutkut_4th_edition_2024.jpg"
+            },
+             {
+                year: 2024,
+                titleAS: "ভাকুটকুট (২০২৪) ",
+                titleEN: "Bhakutkut (2024) ",
+                editionAS: " সংস্কৰণ : তৃতীয় ",
+                editionEN: " Edition : Third ",
+                pdf: "assets/books/Bhakutkut_3rd_edition_2024.pdf",
+                img: "assets/cover/Bhakutkut_3rd_edition_2024.jpg"
+            },
+             {
+                year: 2024,
+                titleAS: "ভাকুটকুট (২০২৪) ",
+                titleEN: "Bhakutkut (2024) ",
+                editionAS: " সংস্কৰণ : দ্বিতীয় ",
+                editionEN: " Edition : Second ",
+                pdf: "assets/books/Bhakutkut_2nd_edition_2024.pdf",
+                img: "assets/cover/Bhakutkut_2nd_edition_2024.jpg"
+            },
+            {
+                year: 2017,
+                titleAS: "ভাকুটকুট (২০১৭) ",
+                titleEN: "Bhakutkut (2017) ",
+                editionAS: " সংস্কৰণ : শৰত্‍ ",
+                editionEN: " Edition : Autumn ",
+                pdf: "assets/books/Bhakutkut_autumn_edition_2017.pdf",
+                img: "assets/cover/Bhakutkut_autumn_edition_2017.jpg"
+            },
+            {
+                year: 2017,
+                titleAS: "ভাকুটকুট (২০১৭) ",
+                titleEN: "Bhakutkut (2017) ",
+                editionAS: " সংস্কৰণ : হেমন্ত ",
+                editionEN: " Edition : Pre-winter ",
+                pdf: "assets/books/Bhakutkut_pre-winter_edition_2017.pdf",
+                img: "assets/cover/Bhakutkut_pre-winter_edition_2017.jpg"
+            },
+            {
+                year: 2014,
+                titleAS: "ভাকুটকুট (২০১৪)",
+                titleEN: " Bhakutkut (2014) ",
+                editionAS: " সংস্কৰণ : পঞ্চম ",
+                editionEN: " Edition : Fifth ",
+                pdf: "assets/books/Bhakutkut_5th_edition_2014.pdf",
+                img: "assets/cover/Bhakutkut_5th_edition_2014.jpg"
+            },
+            {
+                year: 2014,
+                titleAS: "ভাকুটকুট (২০১৪)",
+                titleEN: " Bhakutkut (2014) ",
+                editionAS: " সংস্কৰণ : মে ",
+                editionEN: " Edition : May ",
+                pdf: "assets/books/Bhakutkut_may_edition_2014.pdf",
+                img: "assets/cover/Bhakutkut_may_edition_2014.jpg"
+            },
+            {
+                year: 2014,
+                titleAS: "ভাকুটকুট (২০১৪)",
+                titleEN: " Bhakutkut (2014) ",
+                editionAS: " সংস্কৰণ : এপ্ৰিল ",
+                editionEN: " Edition : April ",
+                pdf: "assets/books/Bhakutkut_april_edition_2014.pdf",
+                img: "assets/cover/Bhakutkut_april_edition_2014.jpg"
+            },
+            {
+                year: 2009,
+                titleAS: "ভাকুটকুট (২০০৯)",
+                titleEN: " Bhakutkut (2009) ",
+                editionAS: " সংস্কৰণ :  বিশেষ ",
+                editionEN: " Edition : Special ",
+                pdf: "assets/books/Bhakutkut_special_edition_2009.pdf",
+                img: "assets/cover/Bhakutkut_special_edition_2009.jpg"
+            },
+            {
+                year: 2008,
+                titleAS: "ভাকুটকুট (২০০৮)",
+                titleEN: " Bhakutkut (2008) ",
+                editionAS: " সংস্কৰণ : আগষ্ট ",
+                editionEN: " Edition : August ",
+                pdf: "assets/books/Bhakutkut_aug_edition_2008.pdf",
+                img: "assets/cover/Bhakutkut_aug_edition_2008.jpg"
+            },
+            {
+                year: 2007,
+                titleAS: "ভাকুটকুট (২০০৭)",
+                titleEN: " Bhakutkut (2007) ",
+                editionAS: " সংস্কৰণ : ডিচেম্বৰ ",
+                editionEN: " Edition : December ",
+                pdf: "assets/books/Bhakutkut_dec_edition_2007.pdf",
+                img: "assets/cover/Bhakutkut_dec_edition_2007.jpg"
+            },
+             {
+                year: 1996,
+                titleAS: "ভাকুটকুট (১৯৯৬)",
+                titleEN: " Bhakutkut (1996) ",
+                editionAS: " সংস্কৰণ : প্ৰথম ",
+                editionEN: " Edition : First ",
+                pdf: "assets/books/Bhakutkut_1st_edition_1996.pdf",
+                img: "assets/cover/Bhakutkut_1st_edition_1996.jpg"
+            },
+            {
+                year: 1996,
+                titleAS: "ভাকুটকুট (১৯৯৬)",
+                titleEN: " Bhakutkut (1996) ",
+                editionAS: " সংস্কৰণ : পঞ্চম ",
+                editionEN: " Edition : Fifth ",
+                pdf: "assets/books/Bhakutkut_5th_edition_1996.pdf",
+                img: "assets/cover/Bhakutkut_5th_edition_1996.jpg"
+            },
+            {
+                year: 1996,
+                titleAS: "ভাকুটকুট (১৯৯৬)",
+                titleEN: " Bhakutkut (1996) ",
+                editionAS: " সংস্কৰণ : অষ্টম  ",
+                editionEN: " Edition : Eight ",
+                pdf: "assets/books/Bhakutkut_8th_edition_1996.pdf",
+                img: "assets/cover/Bhakutkut_8th_edition_1996.jpg"
+            },
+            {
+                year: 1996,
+                titleAS: "ভাকুটকুট (১৯৯৬)",
+                titleEN: " Bhakutkut (1996) ",
+                editionAS: " সংস্কৰণ : বিশেষ  ",
+                editionEN: " Edition : Special ",
+                pdf: "assets/books/Bhakutkut_special_edition_1996.pdf",
+                img: "assets/cover/Bhakutkut_special_edition_1996.jpg"
+            },
+            {
+                year: 1995,
+                titleAS: "ভাকুটকুট (১৯৯৫)",
+                titleEN: " Bhakutkut (1995) ",
+                editionAS: " সংস্কৰণ :  প্ৰথম ",
+                editionEN: " Edition : First ",
+                pdf: "assets/books/Bhakutkut_1st_edition_1995.pdf",
+                img: "assets/cover/Bhakutkut_1st_edition_1995.jpg"
+            },
+            {
+                year: 1995,
+                titleAS: "ভাকুটকুট (১৯৯৫)",
+                titleEN: " Bhakutkut (1995) ",
+                editionAS: " সংস্কৰণ :  তৃতীয় ",
+                editionEN: " Edition : Third ",
+                pdf: "assets/books/Bhakutkut_3rd_edition_1995.pdf",
+                img: "assets/cover/Bhakutkut_3rd_edition_1995.jpg"
+            },
+             {
+                year: 1994,
+                titleAS: "ভাকুটকুট (১৯৯৪)",
+                titleEN: " Bhakutkut (1994) ",
+                editionAS: " সংস্কৰণ :  প্ৰথম ",
+                editionEN: " Edition : First ",
+                pdf: "assets/books/Bhakutkut_1st_edition_1994.pdf",
+                img: "assets/cover/Bhakutkut_1st_edition_1994.jpg"
+            },
+            {
+                year: 1994,
+                titleAS: "ভাকুটকুট (১৯৯৪)",
+                titleEN: " Bhakutkut (1994) ",
+                editionAS: " সংস্কৰণ : এপ্ৰিল ",
+                editionEN: " Edition : April ",
+                pdf: "assets/books/Bhakutkut_april_edition_1994.pdf",
+                img: "assets/cover/Bhakutkut_april_edition_1994.jpg"
+            },
+            {
+                year: 1994,
+                titleAS: "ভাকুটকুট (১৯৯৪)",
+                titleEN: " Bhakutkut (1994) ",
+                editionAS: " সংস্কৰণ :  মাৰ্চ ",
+                editionEN: " Edition : March ",
+                pdf: "assets/books/Bhakutkut_march_edition_1994.pdf",
+                img: "assets/cover/Bhakutkut_march_edition_1994.jpg"
+            },
+             {
+                year: 1993,
+                titleAS: "ভাকুটকুট (১৯৯৩)",
+                titleEN: " Bhakutkut (1993) ",
+                editionAS: " সংস্কৰণ :  প্ৰথম ",
+                editionEN: " Edition : First ",
+                pdf: "assets/books/Bhakutkut_1st_edition_1993.pdf",
+                img: "assets/cover/Bhakutkut_1st_edition_1993.jpg"
+            },
+            {
+                year: 1993,
+                titleAS: "ভাকুটকুট (১৯৯৩)",
+                titleEN: " Bhakutkut (1993) ",
+                editionAS: " সংস্কৰণ :  দ্বিতীয় ",
+                editionEN: " Edition : Second ",
+                pdf: "assets/books/Bhakutkut_2nd_edition_1993.pdf",
+                img: "assets/cover/Bhakutkut_2nd_edition_1993.jpg"
+            },
+            {
+                year: 1993,
+                titleAS: "ভাকুটকুট (১৯৯৩)",
+                titleEN: " Bhakutkut (1993) ",
+                editionAS: " সংস্কৰণ :  চতুৰ্থ ",
+                editionEN: " Edition : Fourth ",
+                pdf: "assets/books/Bhakutkut_4th_edition_1993.pdf",
+                img: "assets/cover/Bhakutkut_4th_edition_1993.jpg"
+            },
+            {
+                year: 1993,
+                titleAS: "ভাকুটকুট (১৯৯৩)",
+                titleEN: " Bhakutkut (1993) ",
+                editionAS: " সংস্কৰণ :  পঞ্চম ",
+                editionEN: " Edition : Fifth ",
+                pdf: "assets/books/Bhakutkut_5th_edition_1993.pdf",
+                img: "assets/cover/Bhakutkut_5th_edition_1993.jpg"
+            },
+             {
+                year: 1993,
+                titleAS: "ভাকুটকুট (১৯৯৩)",
+                titleEN: " Bhakutkut (1993) ",
+                editionAS: " সংস্কৰণ :  ষষ্ঠ ",
+                editionEN: " Edition : Sixth ",
+                pdf: "assets/books/Bhakutkut_6th_edition_1993.pdf",
+                img: "assets/cover/Bhakutkut_6th_edition_1993.jpg"
+            },
+             {
+                year: 1993,
+                titleAS: "ভাকুটকুট (১৯৯৩)",
+                titleEN: " Bhakutkut (1993) ",
+                editionAS: " সংস্কৰণ :  সপ্তম ",
+                editionEN: " Edition : Seventh ",
+                pdf: "assets/books/Bhakutkut_7th_edition_1993.pdf",
+                img: "assets/cover/Bhakutkut_7th_edition_1993.jpg"
+            },
+            {
+                year: 1993,
+                titleAS: "ভাকুটকুট (১৯৯৩)",
+                titleEN: " Bhakutkut (1993) ",
+                editionAS: " সংস্কৰণ :  অষ্টম ",
+                editionEN: " Edition : Eight ",
+                pdf: "assets/books/Bhakutkut_8th_edition_1993.pdf",
+                img: "assets/cover/Bhakutkut_8th_edition_1993.jpg"
+            },
+            
+            
+        ];
+        function renderBooks(sortOrder = "newest") {
+            const container = document.getElementById("books-container");
+            container.innerHTML = "";
+
+            const grouped = {};
+            booksData.forEach(book => {
+                if (!grouped[book.year]) grouped[book.year] = [];
+                grouped[book.year].push(book);
+            });
+
+            const sortedYears = Object.keys(grouped)
+                .map(Number)
+                .sort((a, b) => sortOrder === "oldest" ? a - b : b - a);
+
+            sortedYears.forEach(year => {
+                const yearSection = document.createElement("div");
+                yearSection.className = "year-section";
+                yearSection.innerHTML = `<h3>${year}</h3><div class="books-grid"></div>`;
+
+                grouped[year].forEach(book => {
+                    const card = document.createElement("div");
+                    card.className = "book-card";
+                    card.innerHTML = `
+            <a href="${book.pdf}" target="_blank" class="btn preview">
+              <span class="preview-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 24 24" fill="rgba(0,0,0,0.4)">
+                  <path d="M12 4.5C7.305 4.5 3.243 7.61 1.5 12c1.743 4.39 5.805 7.5 10.5 7.5s8.757-3.11 10.5-7.5C20.757 7.61 16.695 4.5 12 4.5zm0 12a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-7.5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+                </svg>
+              </span>
+              <img src="${book.img}" alt="Book Cover">
+            </a>
+            <div class="book-title">
+              <b><span class="book-subtitle" data-as="${book.titleAS}" data-en="${book.titleEN}">${book.titleAS}</span></b><br>
+             <span class="book-edition" data-as="${book.editionAS}" data-en="${book.editionEN}">${book.editionAS}</span>
+              </div>
+            <div class="book-buttons">
+              <a href="${book.pdf}" download class="btn download">⬇ Download</a>
+            </div>
+          `;
+                    yearSection.querySelector(".books-grid").appendChild(card);
+                });
+
+                container.appendChild(yearSection);
+            });
+
+            updateLanguage();
+        }
+
+        function updateLanguage() {
+            const lang = document.documentElement.lang;
+            document.querySelectorAll("[data-as]").forEach(el => {
+                el.textContent = lang === "as" ? el.dataset.as : el.dataset.en;
+            });
+
+            document.getElementById("language-toggle").textContent =
+                lang === "as" ? "English" : "অসমীয়া";
+        }
+
+        document.getElementById("language-toggle").addEventListener("click", () => {
+            const currentLang = document.documentElement.lang;
+            const newLang = currentLang === "as" ? "en" : "as";
+            document.documentElement.lang = newLang;
+            localStorage.setItem("preferredLang", newLang);
+            updateLanguage();
+        });
+
+        document.getElementById("sortOrder").addEventListener("change", e => {
+            renderBooks(e.target.value);
+        });
+
+        // Set preferred language if stored
+        const savedLang = localStorage.getItem("preferredLang");
+        if (savedLang) {
+            document.documentElement.lang = savedLang;
+        }
+
+        updateLanguage();
+        renderBooks();
+
+        // Highlight active nav item
+        const currentPage = location.pathname.split("/").pop();
+        document.querySelectorAll("nav a").forEach(link => {
+            const href = link.getAttribute("href");
+            if (href === currentPage || (href === "index.html" && currentPage === "")) {
+                link.classList.add("active");
+            }
+        });
+    </script>
+</body>
+
+</html>
