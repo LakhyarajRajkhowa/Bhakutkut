@@ -483,13 +483,29 @@
 
 
 
- footer {
-     background-color: #f1f1f1;
-     color: #444;
-     text-align: center;
-     padding: 20px;
-     border-top: 1px solid #ccc;
- }
+footer {
+  background-color: #f1f1f1;
+  color: #444;
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+  font-size: 14px;
+}
+
+footer a {
+  color: #444;
+  text-decoration: none;
+  margin: 0 5px;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #d12d2d; /* optional red accent */
+}
+footer p {
+  white-space: nowrap;
+  overflow-wrap: break-word;
+}
 
 
  @media (max-width: 500px) {
@@ -601,4 +617,8 @@
         width: 300px;
         height: auto;
  }
+ footer {
+  
+  font-size: 12px;
+}
  }
