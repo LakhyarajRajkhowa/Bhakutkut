@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="as">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhakutkut</title>
+
+    <meta name="description" content="ভাকুটকুট - অসমৰ একমাত্ৰ হাস্য-ব্যংগ বাৰ্তালোচনী | Bhakutkut - Assam's only satirical magazine since 1993." />
+    <meta name="keywords" content="ভাকুটকুট, হাস্য, ব্যংগ, অসম, ব্যংগ পত্রিকা, Assamese satire, Assamese magazine, Bhakutkut, Assam literature" />
+    <meta name="author" content="ভাকুটকুট প্ৰকাশন গোষ্ঠী | Bhakutkut Publication Group" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" href="assets/favicon2.png" type="image/png">
+
+</head>
+
+<body>
+    <header>
+        <button id="language-toggle">English</button>
+        <div class="logo-container">
+            <img src="../../assets/logo.png" alt="ভাকুটকুট Logo" class="logo">
+        </div>
+        <div class="tagline">
+            <p data-as="কেৱল হাঁহিবৰ বাবে" data-en="কেৱল হাঁহিবৰ বাবে">কেৱল হাঁহিবৰ বাবে</p>
+      <p data-as="হাঁহি হাঁহি পঢ়িবৰ বাবে" data-en="হাঁহি হাঁহি পঢ়িবৰ বাবে">হাঁহি হাঁহি পঢ়িবৰ বাবে</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="../../index.html" data-as="ভাকুটকুট" data-en="Bhakutkut">ভাকুটকুট</a>
+        
+    </nav>
+
+    <div class="container">
+        <section class="published-work">
+            <h2 data-as="টংকেশ্বৰ ভৰালী" data-en="Tonkeswar Bharali">টংকেশ্বৰ ভৰালী</h2>
+
+            <div class="sort-controls">
+                <label for="sortOrder">Sort by:</label>
+                <select id="sortOrder">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                </select>
+            </div>
+
+            <div id="books-container"></div>
+        </section>
+    </div>
+
+   <footer>
+
+    <p data-as="Website developed & managed by: Lakhyaraj Rajkhowa"
+      data-en="Website developed & managed by: Lakhyaraj Rajkhowa">
+      Website developed & managed by: Lakhyaraj Rajkhowa
+    </p>
+
+    <p>
+      <a href="https://github.com/lakhyarajrajkhowa" target="_blank">
+        <i class="fab fa-github"></i> GitHub
+      </a> |
+      <a href="https://in.linkedin.com/in/lakhyaraj-rajkhowa-885205292" target="_blank">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+    </p>
+  </footer>
+
+    <script>
+        const booksData = [
+            {
+                year: 2025,
+                titleAS: "ফটা কেঁথাৰ সোণ",
+                titleEN: "Fota Kathar Hun",
+                editionAS: " সংস্কৰণ : প্ৰথম ",
+                editionEN: " Edition : First ",
+                pdf: "assets/books/fota_kathar_hun.pdf",
+                img: "assets/cover/fota_kathar_hun_may_2024.jpg"
+            },
+            
+            
+        ];
+        function renderBooks(sortOrder = "newest") {
+            const container = document.getElementById("books-container");
+            container.innerHTML = "";
+
+            const grouped = {};
+            booksData.forEach(book => {
+                if (!grouped[book.year]) grouped[book.year] = [];
+                grouped[book.year].push(book);
+            });
+
+            const sortedYears = Object.keys(grouped)
+                .map(Number)
+                .sort((a, b) => sortOrder === "oldest" ? a - b : b - a);
+
+            sortedYears.forEach(year => {
+                const yearSection = document.createElement("div");
+                yearSection.className = "year-section";
+                yearSection.innerHTML = `<h3>${year}</h3><div class="books-grid"></div>`;
+
+                grouped[year].forEach(book => {
+                    const card = document.createElement("div");
+                    card.className = "book-card";
+                    card.innerHTML = `
+            <a href="${book.pdf}" target="_blank" class="btn preview">
+              <span class="preview-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 24 24" fill="rgba(0,0,0,0.4)">
+                  <path d="M12 4.5C7.305 4.5 3.243 7.61 1.5 12c1.743 4.39 5.805 7.5 10.5 7.5s8.757-3.11 10.5-7.5C20.757 7.61 16.695 4.5 12 4.5zm0 12a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-7.5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+                </svg>
+              </span>
+              <img src="${book.img}" loading="lazy" alt="Book Cover">
+            </a>
+            <div class="book-title">
+              <b><span class="book-subtitle" data-as="${book.titleAS}" data-en="${book.titleEN}">${book.titleAS}</span></b><br>
+             <span class="book-edition" data-as="${book.editionAS}" data-en="${book.editionEN}">${book.editionAS}</span>
+              </div>
+            <div class="book-buttons">
+              <a href="${book.pdf}" download class="btn download">⬇ Download</a>
+            </div>
+          `;
+                    yearSection.querySelector(".books-grid").appendChild(card);
+                });
+
+                container.appendChild(yearSection);
+            });
+
+            updateLanguage();
+        }
+
+        function updateLanguage() {
+            const lang = document.documentElement.lang;
+            document.querySelectorAll("[data-as]").forEach(el => {
+                el.textContent = lang === "as" ? el.dataset.as : el.dataset.en;
+            });
+
+            document.getElementById("language-toggle").textContent =
+                lang === "as" ? "English" : "অসমীয়া";
+        }
+
+        document.getElementById("language-toggle").addEventListener("click", () => {
+            const currentLang = document.documentElement.lang;
+            const newLang = currentLang === "as" ? "en" : "as";
+            document.documentElement.lang = newLang;
+            localStorage.setItem("preferredLang", newLang);
+            updateLanguage();
+        });
+
+        document.getElementById("sortOrder").addEventListener("change", e => {
+            renderBooks(e.target.value);
+        });
+
+        // Set preferred language if stored
+        const savedLang = localStorage.getItem("preferredLang");
+        if (savedLang) {
+            document.documentElement.lang = savedLang;
+        }
+
+        updateLanguage();
+        renderBooks();
+
+        // Highlight active nav item
+        const currentPage = location.pathname.split("/").pop();
+        document.querySelectorAll("nav a").forEach(link => {
+            const href = link.getAttribute("href");
+            if (href === currentPage || (href === "index.html" && currentPage === "")) {
+                link.classList.add("active");
+            }
+        });
+    </script>
+</body>
+
+</html>
